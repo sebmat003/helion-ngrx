@@ -33,7 +33,7 @@ export const PRODUCTS: Product[] = [
 export class ProductsService {
   constructor() {}
 
-  public getAllProducts(): Observable<Product[]> {
+  getAllProducts(): Observable<Product[]> {
     return of(PRODUCTS).pipe(delay(100));
   }
 }

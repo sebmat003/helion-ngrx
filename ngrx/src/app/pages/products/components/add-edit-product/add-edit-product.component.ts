@@ -5,7 +5,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialogModule,
 } from '@angular/material/dialog';
-import { PRODUCT_THUMBNAILS } from '../../product-thumbnails.const';
+import { PRODUCT_THUMBNAILS } from '../../consts/product-thumbnails.const';
 import {
   FormControl,
   FormGroup,
@@ -14,6 +14,7 @@ import {
 } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
@@ -26,12 +27,13 @@ import { MatInputModule } from '@angular/material/input';
     MatSelectModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatButtonModule,
   ],
   standalone: true,
 })
 export class AddEditProductComponent implements OnInit {
-  public thumbnails = [...PRODUCT_THUMBNAILS];
-  public form = new FormGroup<ProductForm>({
+  thumbnails = [...PRODUCT_THUMBNAILS];
+  form = new FormGroup<ProductForm>({
     name: new FormControl('', {
       validators: [Validators.required],
       nonNullable: true,
@@ -45,22 +47,23 @@ export class AddEditProductComponent implements OnInit {
       nonNullable: true,
     }),
   });
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Product,
     private dialog: MatDialogRef<AddEditProductComponent>
   ) {}
 
-  public ngOnInit(): void {
+  ngOnInit() {
     if (this.data) {
       this.setForm();
     }
   }
 
-  public setForm(): void {
+  setForm() {
     this.form.patchValue({ ...this.data });
   }
 
-  public save(): void {
+  save() {
     const product: Product = {
       id: this.data ? this.data.id : Math.random() * 1000 + 1,
       ...this.form.getRawValue(),

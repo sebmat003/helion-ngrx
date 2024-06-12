@@ -17,19 +17,19 @@ import { ProductsService } from './services/products.service';
   standalone: true,
 })
 export class ProductsComponent implements OnInit {
-  public products$!: Observable<(Product | undefined)[]>;
-  public bucket$!: Observable<Bucket>;
+  products$!: Observable<(Product | undefined)[]>;
+  bucket$!: Observable<Bucket>;
 
   constructor(
     private dialog: MatDialog,
     private productsService: ProductsService
   ) {}
 
-  public ngOnInit(): void {
+  ngOnInit() {
     this.getAllProducts();
   }
 
-  public editProduct(product: Product): void {
+  editProduct(product: Product) {
     this.dialog
       .open(AddEditProductComponent, {
         data: product,
@@ -42,15 +42,15 @@ export class ProductsComponent implements OnInit {
       });
   }
 
-  public deleteProduct(id: number): void {
+  deleteProduct(id: number) {
     // delete product
   }
 
-  public changeProductQuantity(product: Product, counter: number): void {
+  changeProductQuantity(product: Product, counter: number) {
     // change product quantity
   }
 
-  public addProduct(): void {
+  addProduct() {
     this.dialog
       .open(AddEditProductComponent)
       .afterClosed()
@@ -61,7 +61,7 @@ export class ProductsComponent implements OnInit {
       });
   }
 
-  public getAllProducts(): void {
+  getAllProducts() {
     // get all products
     this.products$ = this.productsService.getAllProducts();
   }

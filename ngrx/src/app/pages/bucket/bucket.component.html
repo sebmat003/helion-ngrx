@@ -1,4 +1,5 @@
 <div class="bucket">
+  <h2>Your bucket</h2>
   @if (bucket$ | async; as bucket) {
   <div class="products">
     @if(!!bucket.products.length) { @for (product of bucket.products; track

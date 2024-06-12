@@ -13,9 +13,9 @@ import { AsyncPipe } from '@angular/common';
   standalone: true
 })
 export class BucketComponent {
-  public bucket$!: Observable<Bucket>;
+  bucket$!: Observable<Bucket>;
 
-  public removeProduct(product: ProductCount): void {
+  removeProduct(product: ProductCount) {
     // remove product
   }
 }
